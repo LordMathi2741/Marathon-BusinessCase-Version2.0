@@ -36,10 +36,10 @@ export class BaseService<T> {
   }
 
   getCenters(){
-      return this.http.get<T>(this.resourcePath(),this.httpOptions).pipe(retry(2),catchError(this.handleError));;
+      return this.http.get<T>(this.resourcePath(),this.httpOptions).pipe(retry(2),catchError(this.handleError));
   }
   getParticipantsByCenter(centerId:number){
-     return this.http.get<T>(this.resourcePath() + `/${centerId}`+"/participants", this.httpOptions).pipe(retry(2),catchError(this.handleError));;
+     return this.http.get<T>(this.resourcePath() + `/${centerId}`+"/participants", this.httpOptions).pipe(retry(2),catchError(this.handleError));
   }
 
 
