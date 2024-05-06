@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {environment} from "../../../environments/environment";
 import {HttpErrorResponse} from "@angular/common/http";
-import {throwError} from "rxjs";
+import {catchError, retry, throwError} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -32,14 +32,14 @@ export class BaseService<T> {
   }
 
   getWinner(){
-     return this.http.get<T>(this.resourcePath() + "?ranking=1" );
+     return this.http.get<T>(this.resourcePath() + "?ranking=1",this.httpOptions ).pipe(retry(2),catchError(this.handleError));
   }
 
   getCenters(){
-      return this.http.get<T>(this.resourcePath());
+      return this.http.get<T>(this.resourcePath(),this.httpOptions).pipe(retry(2),catchError(this.handleError));;
   }
   getParticipantsByCenter(centerId:number){
-     return this.http.get<T>(this.resourcePath() + `/${centerId}`+"/participants");
+     return this.http.get<T>(this.resourcePath() + `/${centerId}`+"/participants", this.httpOptions).pipe(retry(2),catchError(this.handleError));;
   }
 
 
