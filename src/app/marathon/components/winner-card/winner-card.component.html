@@ -1,0 +1,9 @@
+<div class="card-container" aria-label="The cards container">
+    <mat-card class="card-manager" aria-label="The card manager">
+          <h1> The participant Winner </h1>
+          <mat-card-content> {{winnerData.firstName + ' ' + winnerData.lastName}}</mat-card-content>
+          <img [src]="winnerData.photoUrl" width="150" height="150">
+          <mat-card-content> Ranking: {{winnerData.ranking}}</mat-card-content>
+          <mat-card-content> Record Time: {{winnerData.recordTime}}</mat-card-content>
+    </mat-card>
+</div>
